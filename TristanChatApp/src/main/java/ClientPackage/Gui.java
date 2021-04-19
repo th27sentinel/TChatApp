@@ -337,7 +337,7 @@ public class Gui extends javax.swing.JFrame {
                         //i.printStackTrace();
                         break;
                     } catch (NullPointerException nu) {
-
+                            //nu.printStackTrace();
                     }
                 }
 
@@ -349,190 +349,52 @@ public class Gui extends javax.swing.JFrame {
 
     public void writeM() {
 
-        //boolean bLogout = false;
-        //sendMessage thread
+       
         Thread sendMessage = new Thread(new Runnable() {
             @Override
 
             public void run() {
 
                 message = "";
-                //while (true) {
-                //read the message to deliver.
-                //String msg = scanIt.nextLine();
+                
                 String msg = "";
                 if (bLogout == true) {
                     try {
 
-                        //bLogout = false;
-                        //dos.writeUTF(username + "#" + password);
-//                    LoginFrame.
+                        
                         dos.writeUTF("logout");
                     } catch (IOException i) {
                         i.printStackTrace();
                     }
-                } //                    else if (i < 2) {
-                //                        try {
-                //                        i++;
-                //                            
-                //                            
-                //                       // fillComboBox();
-                //                        
-                //                        /////
-                //                        ///// maak i < 2
-                //                        //// maak  1++
-                //                        
-                //                        //i++;
-                //                        //write on the output stream
-                //                        if (i == 1) {
-                //                        dos.writeUTF(username + "#" + password);
-                //                        }
-                //                        //fillComboBox();
-                //                        //cmbContacts.setSelectedIndex(0);
-                //                        writeM();
-                //                        
-                //                    } catch (IOException i) {
-                //                        i.printStackTrace();
-                //                    }
-                //} 
+                } 
                 else {
-//                        //fillComboBox();
-//                    String receiver = cmbContacts.getSelectedItem().toString();
-                    //fillComboBox();
-                    //cmbContacts.setSelectedIndex(indexCombo);
-                    //if (i != 0) {
+
                     String receiver = "";
-//                    if(cmbContacts.getSelectedItem().toString() == null){
-//                    cmbContacts.setSelectedIndex(0);
-//                    }
-//                        if(cmbContacts.getSelectedItem() == null){
-//                            cmbContacts.setSelectedIndex(0);
-//                            cmbContacts.setSelectedItem(cmbContacts.getSelectedIndex());
-//                        }
+
                     receiver = cmbContacts.getSelectedItem().toString();
 
                     StringTokenizer st = new StringTokenizer(receiver, "(");
                     receiver = st.nextToken();
 
                     msg = receiver + "#" + tfText.getText();
-                    //} 
-//                    else {
-//                    i++;
-//                    msg = tfText.getText(); }
-                    try {
-                        //write on the output stream
 
-                        // System.out.println("msg : " + msg);
-//                        LoginFrame.
+                    try {
+
                         dos.writeUTF(msg);
                     } catch (IOException i) {
-                        i.printStackTrace();
+//                        i.printStackTrace();
                     } catch (NullPointerException n) {
 //                        n.printStackTrace();
-//                        try {
-////                        LoginFrame.
-//                    dos.writeUTF("");
-//                        } catch (IOException io) {
-//                            io.printStackTrace();
-//                        }
+
                     }
                 }
             }
-            //      }
+           
         });
 
         sendMessage.start();
 
     }
 
-//    public void refresh() {
-//    
-//        Thread refreshNow = new Thread(new Runnable() {
-//        
-//        @Override
-//        
-//        public void run() {
-//        
-//            while (true) {
-////            if (Server.bRefresh == true) {
-////                Server.bRefresh = false;
-//                //fillComboBox();
-//                if (counter > 0) {
-//                    i = cmbContacts.getSelectedIndex();
-//                } else {
-//                    i = 0;
-//                    i++;
-//                }
-//                
-//                
-//                
-//                cmbContacts.removeAllItems();
-//        
-//        MongoClient mongo = new MongoClient("localhost", 27017);
-//        
-//        MongoDatabase database = mongo.getDatabase("myDb");  
-//        
-//        MongoCollection<Document> collection = database.getCollection("profilesNew");
-//        
-//        FindIterable<Document> cursor = collection.find();
-//        
-//        Iterator it = cursor.iterator();
-//        for(Document doc : cursor){
-//             cmbContacts.addItem(doc.get("Username", String.class) + " ( " + doc.get("Status", String.class) + " )");
-//             //System.out.println(doc.get("Username", String.class));
-//        }
-//                
-//        
-//        cmbContacts.setSelectedIndex(i);
-//        
-//            }
-//                
-////            }
-//
-//        }
-//        
-//            
-//        });
-//        refreshNow.start();
-//    }
-//    public void refreshCombo() {
-//        Thread refreshCombo = new Thread(new Runnable() {
-//        @Override
-//        
-//        public void run() {
-//            while(true) {
-//                try {
-//                
-////                    if (counter == 0) {
-////                        
-////                        counter++;
-////                        
-////                        fillComboBox();
-////                        
-////                        cmbContacts.setSelectedIndex(0);
-////                        
-////                    } else {
-//                    
-////                        indexCombo = cmbContacts.getSelectedIndex();
-//                        fillComboBox();
-////                        cmbContacts.setSelectedIndex(indexCombo);
-////                    }
-//                    
-////                } catch (IOException i) {
-////                    i.printStackTrace();
-////                
-//                } catch (NoSuchElementException n) {
-//                    n.printStackTrace();
-//                } catch (NullPointerException nu) {
-//                    nu.printStackTrace();
-//                }
-//        
-//        }
-//        
-//        }
-//        });
-//        
-//        
-//        refreshCombo.start();
-//    }
+
 }

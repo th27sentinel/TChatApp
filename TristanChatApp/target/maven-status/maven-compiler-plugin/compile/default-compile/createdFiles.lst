@@ -1,2 +1,14 @@
-com\mycompany\mavenproject2\MyClient.class
-com\mycompany\mavenproject2\MyServer.class
+ClientPackage\Gui$5.class
+ClientPackage\LoginFrame.class
+ClientPackage\LoginFrame$1.class
+ServerPackage\ClientHandler.class
+ClientPackage\Gui$1.class
+ClientPackage\Gui$6.class
+ClientPackage\Gui.class
+ClientPackage\Gui$2.class
+ServerPackage\Server.class
+ClientPackage\LoginFrame$3$1.class
+ClientPackage\LoginFrame$3.class
+ClientPackage\LoginFrame$2.class
+ClientPackage\Gui$4.class
+ClientPackage\Gui$3.class

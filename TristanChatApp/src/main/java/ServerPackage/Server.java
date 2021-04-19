@@ -72,20 +72,33 @@ public class Server {
                 MongoClient mongo = new MongoClient("localhost", 27017);
                 MongoDatabase database = mongo.getDatabase("myDb");
 
-                MongoCollection<Document> collectionM = database.getCollection("messagesNew");
-                MongoCollection<Document> collectionP = database.getCollection("profilesNew");
 
-                BasicDBObject query = new BasicDBObject();
+boolean collecExists = false;
+                MongoCollection<Document> collectionP = null;
+        for (String name : database.listCollectionNames()) {
 
-                FindIterable<Document> cursor = collectionP.find(query);
+            if (name.equals("profilesNew")) {
+                collecExists = true;
+                break;
+            }
+        }
+        if (collecExists == false) {
 
-                Iterator it = cursor.iterator();
+            database.createCollection("profilesNew");
+           
+                Document documentP = new Document("Username", "a").append("Password", "a").append("ID", new ObjectId()).append("Designation", null).append("Status", "Offline");
+collectionP = database.getCollection("profilesNew");
+                collectionP.insertOne(documentP);
+ documentP = new Document("Username", "b").append("Password", "b").append("ID", new ObjectId()).append("Designation", null).append("Status", "Offline");
 
-                // changes everyones' status field to offline
+                collectionP.insertOne(documentP);
+     
+        
+        }
+        collectionP = database.getCollection("profilesNew");
+                FindIterable<Document> cursor = collectionP.find();
+                
                 for (Document doc : cursor) {
-//                
-                    Document documentP = new Document("Username", doc.get("Username", String.class)).append("Password",
-                            doc.get("Password", String.class)).append("ID", doc.get("ID", ObjectId.class)).append("Name", doc.get("Name", String.class)).append("Status", "Offline");
 
                     collectionP.updateOne(new Document("ID", doc.get("ID", ObjectId.class)),
                             new Document("$set", new Document("Designation", null)));
@@ -138,7 +151,7 @@ class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        int counter = 0;
+        
 
         String received;
 
@@ -146,9 +159,45 @@ class ClientHandler implements Runnable {
         MongoDatabase database = mongo.getDatabase("myDb");
 
         System.out.println("Collection created successfully");
+MongoCollection<Document> collectionM = null;
+        boolean collecExists = false;
+               // MongoCollection<Document> collectionP = null;
+        for (String name : database.listCollectionNames()) {
 
-        MongoCollection<Document> collectionM = database.getCollection("messagesNew");
-        MongoCollection<Document> collectionP = database.getCollection("profilesNew");
+            if (name.equals("messagesNew")) {
+                collecExists = true;
+                break;
+            }
+        }
+        if (collecExists == false) {
+
+            database.createCollection("messagesNew");
+        }
+        
+     collectionM = database.getCollection("messagesNew");
+        boolean collecPExists = false;
+                MongoCollection<Document> collectionP = null;
+        for (String name : database.listCollectionNames()) {
+
+            if (name.equals("profilesNew")) {
+                collecPExists = true;
+                break;
+            }
+        }
+        if (collecPExists == false) {
+
+          database.createCollection("profilesNew");
+          collectionP = database.getCollection("profilesNew");
+           
+                Document documentP = new Document("Username", "a").append("Password", "a").append("ID", new ObjectId()).append("Designation", null).append("Status", "Offline");
+
+                collectionP.insertOne(documentP);
+ documentP = new Document("Username", "b").append("Password", "b").append("ID", new ObjectId()).append("Designation", null).append("Status", "Offline");
+
+                collectionP.insertOne(documentP);
+        
+        }
+        collectionP = database.getCollection("profilesNew");
 
         BasicDBObject usernameQuery = new BasicDBObject();
         BasicDBObject recipientQuery = new BasicDBObject();
@@ -353,12 +402,12 @@ class ClientHandler implements Runnable {
 
                 }
 
-                /////
+             
             } catch (IOException i) {
-                i.printStackTrace();
+                //i.printStackTrace();
                 break;
             } catch (NoSuchElementException n) {
-                n.printStackTrace();
+                //n.printStackTrace();
             }
         }
 
@@ -366,7 +415,7 @@ class ClientHandler implements Runnable {
 
     private void toetsiets() {
 
-        boolean colExits = false;
+        boolean collecExists = false;
 
         MongoClient mongo = new MongoClient("localhost", 27017);
 
@@ -376,11 +425,11 @@ class ClientHandler implements Runnable {
         for (String name : database.listCollectionNames()) {
 
             if (name.equals("profilesNew")) {
-                colExits = true;
+                collecExists = true;
                 break;
             }
         }
-        if (colExits == false) {
+        if (collecExists == false) {
 
             database.createCollection("profilesNew");
 

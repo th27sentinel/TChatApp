@@ -190,7 +190,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 try {
 
                     InetAddress localhostS = InetAddress.getByName("192.168.101.175");
-
+//InetAddress localhostS = InetAddress.getByName("localhost");
                     s = new Socket(localhostS, ServerPort);
 
                     dis = new DataInputStream(s.getInputStream());

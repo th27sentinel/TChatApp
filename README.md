@@ -1,8 +1,4 @@
 # TristanChatApp
-
-Add ip address to below code:
-InetAddress localhostS = InetAddress.getByName("192.xxx.xxx.xxx");
-
 First run the Server and then run the LoginFrame. Enter Username and Password and then press either the "Create Account" or "Login" buttons.
 
 The combobox at the top of the Gui list all the accounts stored on the database. Upon logging in all previous messages stored on the database will be automatically printed out. The first time a client logs in it might produce duplicate messages, but just select a name on the combobox at the top to get rid of them.
@@ -19,6 +15,5 @@ This project was created using Apache Netbeans 12.3, Windows 10 and MongoDB Ente
 2. IP Address of the device that will be acting as the server
 
 # Running the client program (LoginFrame.java) for the first time on any client device:
-1. Go to the LoginFrame.java file in the clientPackage subpackage
-2. Open the LoginFrame.java file in any compatible IDE
-3. Edit the ipAddress variable to contain the server device ip address
+Add ip address to below code:
+InetAddress localhostS = InetAddress.getByName("192.xxx.xxx.xxx");
